@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>UG Comércio</title>
+  <meta name="description" content="Representação de softwares 3D para joalheria, calçados, texturização e impressão 3D. Rhinoceros, plugins especializados, Ant3D, RizomUV e resinas com suporte técnico qualificado.">
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+
+  <meta property="og:title" content="UG Comércio">
+  <meta property="og:description" content="Representação de softwares 3D para joalheria, calçados, texturização e impressão 3D. Suporte técnico especializado em todo o Brasil.">
+  <meta property="og:image" content="images/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://ugrepresentacoes.com/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UG Comércio">
+  <meta name="twitter:description" content="Representação de softwares 3D para joalheria, calçados, texturização e impressão 3D.">
+  <meta name="twitter:image" content="images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── VARIÁVEIS ───────────────────────────────────── */
+    :root {
+      --bg:           #070B18;
+      --bg2:          #0C1225;
+      --surface:      #111C34;
+      --surface2:     #182440;
+      --border:       rgba(100,130,210,0.12);
+      --border2:      rgba(100,130,210,0.22);
+      --text:         #DDE5F5;
+      --text-soft:    #7890B8;
+      --accent:       #3B82F6;
+      --accent2:      #818CF8;
+      --accent-glow:  rgba(59,130,246,0.18);
+      --white:        #FFFFFF;
+      --radius:       12px;
+      --radius-lg:    20px;
+      --trans:        .3s ease;
+    }
+
+    /* ── RESET ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Remove tap highlight e appearance padrão iOS */
+    *, a, button, input, textarea {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button, input, textarea, select {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+    ul   { list-style: none; }
+
+    /* ── CONTAINER ───────────────────────────────────── */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── SECTION BASE ────────────────────────────────── */
+    .section { padding: 100px 0; }
+
+    .section-tag {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 12px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(129,140,248,0.1);
+      border: 1px solid rgba(129,140,248,0.2);
+      padding: 4px 14px;
+      border-radius: 99px;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-desc {
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header { margin-bottom: 56px; }
+
+    /* ── HEADER ──────────────────────────────────────── */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      height: 68px;
+      /* Safe area para notch e Dynamic Island */
+      padding-top: env(safe-area-inset-top);
+      height: calc(68px + env(safe-area-inset-top));
+      background: rgba(7,11,24,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--trans), box-shadow var(--trans);
+    }
+
+    #header.scrolled {
+      background: rgba(7,11,24,.97);
+      box-shadow: 0 2px 24px rgba(0,0,0,.4);
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .header-logo img {
+      height: 42px;
+      width: auto;
+      filter: invert(1);
+    }
+
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-desktop a {
+      font-size: .88rem;
+      font-weight: 500;
+      color: rgba(221,229,245,.7);
+      transition: color var(--trans);
+      letter-spacing: .01em;
+    }
+
+    .nav-desktop a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 8px 22px;
+      border-radius: 99px;
+      font-weight: 600 !important;
+      font-size: .85rem !important;
+      transition: background var(--trans), transform var(--trans) !important;
+    }
+
+    .nav-cta:hover {
+      background: #2563EB !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all var(--trans);
+    }
+
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── NAV MOBILE ──────────────────────────────────── */
+    #navMobile {
+      position: fixed;
+      top: calc(68px + env(safe-area-inset-top)); left: 0; right: 0;
+      z-index: 850;
+      background: rgba(7,11,24,.98);
+      backdrop-filter: blur(20px);
+      padding: 12px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(-120%);
+      transition: transform var(--trans);
+      border-bottom: 1px solid var(--border);
+    }
+
+    #navMobile.open { transform: translateY(0); }
+
+    #navMobile a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(221,229,245,.8);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--trans);
+    }
+
+    #navMobile a:last-child { border-bottom: none; }
+    #navMobile a:hover { color: var(--white); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      min-height: 100dvh; /* dvh: dynamic viewport height — corrige barra de endereço iOS */
+      padding-top: calc(68px + env(safe-area-inset-top));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: var(--bg);
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 80px;
+    }
+
+    /* Triângulos decorativos */
+    .hero-tri {
+      position: absolute;
+      pointer-events: none;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .hero-tri-1 {
+      width: 300px; height: 300px;
+      top: 8%; left: -60px;
+      background: linear-gradient(135deg, rgba(59,130,246,.06), rgba(129,140,248,.03));
+    }
+
+    .hero-tri-2 {
+      width: 200px; height: 200px;
+      bottom: 12%; right: -40px;
+      background: linear-gradient(135deg, rgba(129,140,248,.06), rgba(59,130,246,.03));
+    }
+
+    .hero-tri-3 {
+      width: 150px; height: 150px;
+      top: 20%; right: 12%;
+      background: rgba(59,130,246,.04);
+    }
+
+    .hero-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(221,229,245,.035) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    .hero-logo-wrap {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 32px;
+    }
+
+    .hero-logo {
+      height: 160px;
+      width: auto;
+      filter: invert(1) drop-shadow(0 0 32px rgba(59,130,246,.3));
+      animation: logoFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    #hero h1 {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    #hero h1 span {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none;
+    }
+
+    #hero h2 {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      max-width: 620px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    .hero-slogan {
+      position: relative;
+      z-index: 2;
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(221,229,245,.5);
+      margin-bottom: 48px;
+    }
+
+    .hero-btns {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: 2px solid var(--accent);
+      transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
+    }
+
+    .btn-primary:hover {
+      background: #2563EB;
+      border-color: #2563EB;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(59,130,246,.4);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: 2px solid rgba(221,229,245,.2);
+      transition: background var(--trans), border-color var(--trans), transform var(--trans);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(221,229,245,.45);
+      transform: translateY(-2px);
+    }
+
+    /* ── SOBRE ───────────────────────────────────────── */
+    #sobre {
+      background:
+        linear-gradient(rgba(7,11,24,0.88), rgba(7,11,24,0.88)),
+        url('images/joia_feita_com_plugin_jfr.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .sobre-left .section-tag { margin-left: 0; }
+
+    .sobre-left h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .sobre-left h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sobre-historia p {
+      color: var(--text-soft);
+      font-size: .97rem;
+      margin-bottom: 14px;
+      line-height: 1.8;
+    }
+
+    .sobre-historia p strong { color: var(--text); }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      gap: 0;
+      margin-top: 36px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    .tl-item {
+      flex: 1;
+      position: relative;
+      padding-right: 24px;
+    }
+
+    .tl-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 10px; right: 0;
+      width: 1px; height: calc(100% - 10px);
+      background: var(--border);
+    }
+
+    .tl-year {
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+
+    .tl-desc {
+      font-size: .82rem;
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    /* Áreas de atuação */
+    .areas-atuacao {
+      margin-top: 32px;
+    }
+
+    .areas-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .areas-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .area-tag {
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--accent2);
+      background: rgba(129,140,248,.1);
+      border: 1px solid rgba(129,140,248,.2);
+      padding: 5px 12px;
+      border-radius: 99px;
+    }
+
+    /* MVV cards */
+    .mvv-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mvv-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 28px 28px 24px;
+      position: relative;
+      transition: border-color var(--trans), transform var(--trans);
+    }
+
+    .mvv-card:hover {
+      border-color: var(--border2);
+      transform: translateX(4px);
+    }
+
+    .mvv-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      border-radius: 3px 0 0 3px;
+    }
+
+    .mvv-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+
+    .mvv-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .mvv-text {
+      font-size: .88rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* ── PRODUTOS ────────────────────────────────────── */
+    #produtos {
+      background:
+        linear-gradient(rgba(7,11,24,0.86), rgba(7,11,24,0.86)),
+        url('images/engenharia_reversa_com_orang.png') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .produto-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .produto-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity var(--trans);
+      pointer-events: none;
+    }
+
+    .produto-card:hover {
+      border-color: rgba(59,130,246,.35);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.4);
+    }
+
+    .produto-card:hover::after { opacity: 1; }
+
+    .produto-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .produto-nome {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .produto-desc {
+      font-size: .88rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .produto-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(59,130,246,.1);
+      border: 1px solid rgba(59,130,246,.2);
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+
+    /* ── DEPOIMENTOS ─────────────────────────────────── */
+    #depoimentos {
+      background:
+        linear-gradient(rgba(7,11,24,0.90), rgba(7,11,24,0.90)),
+        url('images/orang_flow_along_surface.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+
+    .depo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .depo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: border-color var(--trans), transform var(--trans);
+    }
+
+    .depo-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-4px);
+    }
+
+    .depo-stars {
+      color: #F59E0B;
+      font-size: .9rem;
+      letter-spacing: 2px;
+    }
+
+    .depo-texto {
+      font-size: .93rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+      flex: 1;
+      font-style: italic;
+    }
+
+    .depo-texto::before { content: '\201C'; }
+    .depo-texto::after  { content: '\201D'; }
+
+    .depo-autor {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .depo-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .78rem;
+      font-weight: 800;
+      color: var(--white);
+      flex-shrink: 0;
+      letter-spacing: .02em;
+    }
+
+    .depo-nome {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .depo-cargo {
+      font-size: .78rem;
+      color: var(--text-soft);
+    }
+
+    /* ── CONTATO ─────────────────────────────────────── */
+    #contato {
+      background:
+        linear-gradient(rgba(7,11,24,0.88), rgba(7,11,24,0.88)),
+        url('images/aplicacao_de_textura_com_ant3d.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .contato-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: border-color var(--trans);
+    }
+
+    .contato-card:hover { border-color: var(--border2); }
+
+    .contato-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(59,130,246,.12);
+      border: 1px solid rgba(59,130,246,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contato-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 4px;
+    }
+
+    .contato-valor {
+      font-size: .9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .contato-valor a {
+      color: var(--text);
+      transition: color var(--trans);
+    }
+
+    .contato-valor a:hover { color: var(--accent); }
+
+    .contato-cta {
+      text-align: center;
+    }
+
+    .btn-wpp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: #22C55E;
+      color: var(--white);
+      font-size: .95rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      border: none;
+      transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
+    }
+
+    .btn-wpp:hover {
+      background: #16A34A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(34,197,94,.35);
+    }
+
+    .btn-wpp svg { flex-shrink: 0; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .social-link {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      transition: background var(--trans), border-color var(--trans), color var(--trans);
+    }
+
+    .social-link:hover {
+      background: var(--surface2);
+      border-color: var(--border2);
+      color: var(--white);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo img {
+      height: 36px;
+      width: auto;
+      filter: invert(1) opacity(.6);
+    }
+
+    .footer-copy {
+      font-size: .8rem;
+      color: rgba(120,144,184,.6);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 14px;
+    }
+
+    .footer-socials a {
+      color: rgba(120,144,184,.5);
+      font-size: 1rem;
+      transition: color var(--trans);
+    }
+
+    .footer-socials a:hover { color: var(--text-soft); }
+
+    /* ── BOTÃO FLUTUANTE WPP ─────────────────────────── */
+    .wpp-float {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      right: calc(24px + env(safe-area-inset-right));
+      z-index: 800;
+      width: 54px; height: 54px;
+      background: #22C55E;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(34,197,94,.35);
+      transition: transform var(--trans), box-shadow var(--trans);
+    }
+
+    .wpp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(34,197,94,.5);
+    }
+
+    /* ── TELA DE CARREGAMENTO ────────────────────────── */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: var(--bg);
+      transition: opacity .8s ease;
+    }
+
+    #loading-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .loading-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,11,24,.62);
+      z-index: 1;
+    }
+
+    .loading-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .loading-logo {
+      height: 120px;
+      width: auto;
+      filter: invert(1) drop-shadow(0 0 28px rgba(59,130,246,.5));
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    .loading-bar-wrap {
+      width: 200px;
+      height: 2px;
+      background: rgba(255,255,255,.1);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .loading-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      animation: fillBar 3s ease forwards;
+    }
+
+    @keyframes fillBar {
+      0%   { width: 0%; }
+      80%  { width: 90%; }
+      100% { width: 100%; }
+    }
+
+    /* ── HERO VÍDEO ──────────────────────────────────── */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,11,24,.70);
+      z-index: 1;
+    }
+
+    /* ── BARRA DE PROGRESSO ──────────────────────────── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+      background-size: 200% 100%;
+      z-index: 9999;
+      transition: width .1s linear;
+      animation: shimmerBar 2.5s linear infinite;
+    }
+
+    @keyframes shimmerBar {
+      0%   { background-position: 0% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* ── CANVAS PARTÍCULAS ───────────────────────────── */
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── CURSOR TYPEWRITER ───────────────────────────── */
+    .tw-cursor {
+      display: inline-block;
+      width: 2px;
+      height: .9em;
+      background: var(--accent);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: twBlink .8s step-end infinite;
+    }
+
+    @keyframes twBlink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* ── MOUSE SPOTLIGHT NOS CARDS ───────────────────── */
+    .produto-card::after {
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(59,130,246,.2), transparent 65%);
+    }
+
+    /* ── ACTIVE NAV ──────────────────────────────────── */
+    .nav-desktop a.nav-ativo { color: var(--white); }
+
+    /* ── RIPPLE BOTÕES ───────────────────────────────── */
+    .ripple-wave {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,.25);
+      transform: scale(0);
+      animation: rippleAnim .6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVIDADE ──────────────────────────────── */
+
+    /* 4K / Ultra-wide ≥ 1920px */
+    @media (min-width: 1920px) {
+      .container { max-width: 1600px; padding: 0 64px; }
+      .section { padding: 140px 0; }
+      #hero h1 { font-size: 5rem; }
+      .sobre-grid { gap: 96px; }
+      .produtos-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Widescreen 1440–1919px */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .container { max-width: 1360px; padding: 0 48px; }
+      .section { padding: 120px 0; }
+    }
+
+    /* Laptop médio 1024–1279px */
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      .sobre-grid { gap: 48px; }
+      .produtos-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Tablet landscape 768–1023px */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #sobre, #produtos, #depoimentos, #contato {
+        background-attachment: scroll, scroll;
+      }
+      .section { padding: 80px 0; }
+      .nav-desktop { display: none; }
+      .hamburger { display: flex; }
+
+      .sobre-grid { grid-template-columns: 1fr; gap: 48px; }
+      .sobre-left .section-tag { margin: 0 auto 12px; }
+      .sobre-left h2 { text-align: center; }
+      .areas-label { text-align: center; }
+      .areas-tags { justify-content: center; }
+
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+      .depo-grid { grid-template-columns: repeat(2, 1fr); }
+      .contato-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-socials { justify-content: center; }
+    }
+
+    /* Tablet retrato 640–767px */
+    @media (min-width: 640px) and (max-width: 767px) {
+      #sobre, #produtos, #depoimentos, #contato {
+        background-attachment: scroll, scroll;
+      }
+      .section { padding: 64px 0; }
+      .container { padding: 0 20px; }
+      .section-header { margin-bottom: 40px; }
+      .nav-desktop { display: none; }
+      .hamburger { display: flex; }
+
+      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-left .section-tag { margin: 0 auto 12px; }
+      .sobre-left h2 { text-align: center; }
+      .areas-label { text-align: center; }
+      .areas-tags { justify-content: center; }
+
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+      .depo-grid { grid-template-columns: 1fr; }
+      .contato-grid { grid-template-columns: repeat(2, 1fr); }
+
+      #hero h1 { font-size: 2.4rem; }
+      .hero-logo { height: 110px; }
+      .hero-btns { flex-direction: column; align-items: center; gap: 12px; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 280px; justify-content: center; }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-socials { justify-content: center; }
+    }
+
+    /* Mobile ≤ 639px */
+    @media (max-width: 639px) {
+      #sobre, #produtos, #depoimentos, #contato {
+        background-attachment: scroll, scroll;
+      }
+      .section { padding: 60px 0; }
+      .container { padding: 0 16px; }
+      .section-header { margin-bottom: 36px; }
+      .nav-desktop { display: none; }
+      .hamburger { display: flex; }
+
+      .sobre-grid { grid-template-columns: 1fr; gap: 36px; }
+      .sobre-left .section-tag { margin: 0 auto 12px; }
+      .sobre-left h2 { text-align: center; }
+      .areas-label { text-align: center; }
+      .areas-tags { justify-content: center; }
+
+      .timeline {
+        flex-direction: column;
+        gap: 20px;
+        border-top: none;
+        padding-top: 0;
+        margin-top: 24px;
+      }
+      .tl-item {
+        padding-right: 0;
+        padding-left: 16px;
+        border-left: 2px solid var(--border);
+      }
+      .tl-item:not(:last-child)::after { display: none; }
+
+      .produtos-grid { grid-template-columns: 1fr; }
+      .depo-grid { grid-template-columns: 1fr; }
+      .contato-grid { grid-template-columns: 1fr; }
+
+      #hero h1 { font-size: 2rem; }
+      .hero-logo { height: 100px; }
+      #hero h2 { font-size: .95rem; }
+      .hero-slogan { font-size: .9rem; margin-bottom: 32px; }
+      .hero-btns { flex-direction: column; align-items: center; gap: 12px; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 280px; justify-content: center; }
+      .btn-wpp { width: 100%; max-width: 320px; justify-content: center; }
+
+      .depo-card { padding: 24px 20px; }
+      .mvv-card { padding: 22px 20px; }
+      .produto-card { padding: 24px 20px; }
+      .contato-card { padding: 18px 16px; }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-socials { justify-content: center; }
+    }
+
+    /* Mobile pequeno ≤ 479px */
+    @media (max-width: 479px) {
+      .section { padding: 48px 0; }
+      .hero-logo { height: 88px; }
+      .loading-logo { height: 90px; }
+      .hero-logo-wrap { margin-bottom: 20px; }
+      #hero h1 { font-size: 1.85rem; letter-spacing: -.01em; }
+      .hero-slogan { font-size: .85rem; }
+      .section-title { font-size: 1.75rem; }
+
+      .tl-item { padding-left: 14px; }
+
+      .mvv-card { padding: 20px 16px; }
+      .depo-card { padding: 20px 16px; }
+      .produto-card { padding: 20px 16px; }
+      .contato-card { padding: 16px 14px; }
+      .contato-icon { width: 36px; height: 36px; font-size: 1rem; }
+    }
+
+    /* Mobile mínimo ≤ 360px */
+    @media (max-width: 360px) {
+      .container { padding: 0 12px; }
+      #hero h1 { font-size: 1.65rem; }
+      #hero h2 { font-size: .88rem; }
+      .hero-logo { height: 76px; }
+      .section-title { font-size: 1.55rem; }
+      .header-logo img { height: 32px; }
+      .btn-primary, .btn-outline, .btn-wpp { font-size: .83rem; padding: 12px 20px; }
+      .produto-card { padding: 18px 14px; }
+      .depo-card { padding: 18px 14px; }
+    }
+
+    /* ── APPLE — iOS Safari / iPadOS ─────────────────── */
+
+    /* Corrige 100vh no iOS Safari (barra de endereço retrai mas 100vh não atualiza) */
+    @supports (-webkit-touch-callout: none) {
+      #hero {
+        min-height: -webkit-fill-available;
+      }
+    }
+
+    /* iPhone SE 1ª geração e mini (320px) */
+    @media (max-width: 320px) {
+      .container { padding: 0 10px; }
+      #hero h1 { font-size: 1.5rem; }
+      .hero-logo { height: 68px; }
+      .header-logo img { height: 28px; }
+      .section-title { font-size: 1.4rem; }
+      .btn-primary, .btn-outline, .btn-wpp { font-size: .8rem; padding: 11px 16px; }
+    }
+
+    /* iPhone SE 2ª/3ª geração (375×667) e iPhone 12/13/14 mini (375×812) */
+    @media (max-width: 390px) and (max-height: 900px) {
+      .hero-logo { height: 80px; }
+      .hero-logo-wrap { margin-bottom: 16px; }
+      #hero h1 { font-size: 1.75rem; }
+      .hero-slogan { margin-bottom: 28px; }
+    }
+
+    /* iPhone 12/13/14 Pro Max / 15 Plus (428–430px) */
+    @media (min-width: 390px) and (max-width: 440px) {
+      .produtos-grid { grid-template-columns: 1fr; }
+    }
+
+    /* iPad mini / iPad 9ª geração (768×1024) — portrait */
+    @media (min-width: 768px) and (max-width: 820px) and (orientation: portrait) {
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+      .depo-grid { grid-template-columns: 1fr; }
+      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-left h2 { text-align: center; }
+      .sobre-left .section-tag { margin: 0 auto 12px; }
+      .areas-label { text-align: center; }
+      .areas-tags { justify-content: center; }
+    }
+
+    /* iPad Air / iPad 10ª geração (820–834px) — portrait */
+    @media (min-width: 820px) and (max-width: 860px) and (orientation: portrait) {
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+      .depo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* iPad Pro 11" (834px) — portrait */
+    @media (min-width: 834px) and (max-width: 900px) and (orientation: portrait) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-left h2 { text-align: center; }
+      .sobre-left .section-tag { margin: 0 auto 12px; }
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* iPad Pro 12.9" (1024px) — portrait — tratado como laptop */
+    @media (min-width: 1024px) and (max-width: 1024px) and (orientation: portrait) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-left h2 { text-align: center; }
+      .sobre-left .section-tag { margin: 0 auto 12px; }
+      .nav-desktop { gap: 20px; }
+      .nav-desktop a { font-size: .82rem; }
+    }
+
+    /* Landscape no iPhone — altura reduzida */
+    @media (max-height: 500px) and (orientation: landscape) {
+      #hero {
+        min-height: auto;
+        padding-top: calc(68px + env(safe-area-inset-top));
+        padding-bottom: 48px;
+      }
+      .hero-logo { height: 64px; }
+      .hero-logo-wrap { margin-bottom: 12px; }
+      #hero h1 { font-size: 1.6rem; }
+      #hero h2 { font-size: .85rem; margin-bottom: 12px; }
+      .hero-slogan { display: none; }
+      .hero-btns { gap: 10px; margin-top: 0; }
+    }
+
+    /* ── GALERIA / CARROSSEL ─────────────────────────── */
+    #galeria {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .carousel-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 14px;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+
+    .carousel-slide {
+      flex-shrink: 0;
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--surface);
+    }
+
+    .carousel-slide img,
+    .carousel-slide img[src$=".gif"] {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform .45s ease;
+    }
+
+    .carousel-slide:hover img { transform: scale(1.06); }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 50%, rgba(7,11,24,.65));
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+
+    .carousel-slide:hover .slide-overlay { opacity: 1; }
+
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .carousel-btn {
+      width: 44px; height: 44px;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      color: var(--text);
+      cursor: pointer;
+      font-size: .95rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--trans), border-color var(--trans), color var(--trans);
+    }
+
+    .carousel-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(221,229,245,.2);
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    .carousel-dot.active {
+      background: var(--accent);
+      width: 22px;
+      border-radius: 4px;
+    }
+
+    /* ── LIGHTBOX ────────────────────────────────────── */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+    }
+
+    #lightbox.open { opacity: 1; visibility: visible; }
+
+    .lb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,11,24,.96);
+      backdrop-filter: blur(6px);
+      z-index: 0;
+    }
+
+    .lb-img {
+      position: relative;
+      z-index: 2;
+      max-width: 90vw;
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 60px rgba(0,0,0,.7);
+    }
+
+    .lb-close, .lb-prev, .lb-next {
+      position: absolute;
+      z-index: 3;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--trans), transform var(--trans);
+    }
+
+    .lb-close { top: 20px; right: 24px; }
+    .lb-prev  { left: 20px; top: 50%; transform: translateY(-50%); }
+    .lb-next  { right: 20px; top: 50%; transform: translateY(-50%); }
+
+    .lb-close:hover { background: var(--accent); }
+    .lb-prev:hover  { background: var(--accent); transform: translateY(-50%) scale(1.08); }
+    .lb-next:hover  { background: var(--accent); transform: translateY(-50%) scale(1.08); }
+
+    @media (max-width: 1023px) {
+      .carousel-slide img { height: 220px; }
+    }
+
+    @media (max-width: 600px) {
+      .carousel-slide img { height: 180px; }
+      .lb-prev { left: 8px; }
+      .lb-next { right: 8px; }
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ===== TELA DE CARREGAMENTO ===== -->
+<div id="loading-screen">
+  <video class="loading-video" autoplay muted playsinline>
+    <source src="images/Impressora_Aparecendo_Desde_o_Início.mp4" type="video/mp4">
+  </video>
+  <div class="loading-overlay"></div>
+  <div class="loading-content">
+    <img src="images/logo.png" alt="UG Comércio" class="loading-logo">
+    <div class="loading-bar-wrap">
+      <div class="loading-bar-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#hero" class="header-logo">
+      <img src="images/logo.png" alt="UG Comércio">
+    </a>
+    <nav class="nav-desktop">
+      <a href="#sobre">Sobre</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+      <a href="https://wa.me/5551995133339" target="_blank" class="nav-cta">WhatsApp</a>
+    </nav>
+    <button class="hamburger" id="menuBtn" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== NAV MOBILE ===== -->
+<nav id="navMobile">
+  <a href="#sobre"       onclick="fecharMenu()">Sobre</a>
+  <a href="#produtos"    onclick="fecharMenu()">Produtos</a>
+  <a href="#galeria"     onclick="fecharMenu()">Galeria</a>
+  <a href="#depoimentos" onclick="fecharMenu()">Depoimentos</a>
+  <a href="#contato"     onclick="fecharMenu()">Contato</a>
+  <a href="https://wa.me/5551995133339" target="_blank" onclick="fecharMenu()" style="color:#22C55E;font-weight:600;">WhatsApp</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="images/Vídeo_de_Impressora_D_para_Site.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-dots"></div>
+  <div class="hero-tri hero-tri-1"></div>
+  <div class="hero-tri hero-tri-2"></div>
+  <div class="hero-tri hero-tri-3"></div>
+
+  <div class="hero-logo-wrap">
+    <img src="images/logo.png" alt="UG Comércio" class="hero-logo">
+  </div>
+
+  <h1>UG Comércio</h1>
+
+  <h2>
+    Representação especializada em softwares 3D para joalheria,<br>calçados, texturização e impressão 3D
+  </h2>
+
+  <p class="hero-slogan" id="heroSlogan" style="opacity:0"></p>
+
+  <div class="hero-btns" style="opacity:1;transform:none;">
+    <a href="#produtos" class="btn-primary">Conheça os produtos</a>
+    <a href="https://wa.me/5551995133339" target="_blank" class="btn-outline">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.054 1.49 5.763L.02 23.5l5.891-1.546A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.657-.502-5.178-1.379l-.371-.22-3.496.917.935-3.41-.241-.384A9.936 9.936 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ===== SOBRE ===== -->
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+
+      <!-- Esquerda: história + timeline + áreas -->
+      <div class="sobre-left">
+        <span class="section-tag reveal">Nossa história</span>
+        <h2 class="reveal">Referência nacional em <em>softwares 3D</em></h2>
+        <div class="sobre-historia reveal">
+          <p>Fundada em <strong>setembro de 2022</strong>, a UG Comércio e Representações consolidou-se como referência no segmento de representação comercial de softwares para modelagem, renderização e engenharia digital.</p>
+          <p>Desde o início, buscamos parcerias estratégicas com desenvolvedores renomados, ampliando constantemente nosso portfólio para atender às necessidades de profissionais de design, joalheria, calçado e manufatura em todo o Brasil.</p>
+          <p>Nosso crescimento está alicerçado na <strong>excelência do atendimento</strong>, no suporte técnico qualificado e na valorização da experiência do cliente.</p>
+        </div>
+
+        <div class="timeline reveal">
+          <div class="tl-item">
+            <div class="tl-year" data-count="2022">2022</div>
+            <div class="tl-desc">Fundação da empresa</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year" data-count="2023">2023</div>
+            <div class="tl-desc">Expansão do portfólio</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">Hoje</div>
+            <div class="tl-desc">Referência nacional</div>
+          </div>
+        </div>
+
+        <div class="areas-atuacao reveal">
+          <p class="areas-label">Áreas de atuação</p>
+          <div class="areas-tags">
+            <span class="area-tag">Modelagem 3D</span>
+            <span class="area-tag">Joalheria</span>
+            <span class="area-tag">Calçados</span>
+            <span class="area-tag">Texturização</span>
+            <span class="area-tag">Mapeamento UV</span>
+            <span class="area-tag">Impressão 3D</span>
+            <span class="area-tag">Reparação de arquivos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direita: Missão / Visão / Valores -->
+      <div class="mvv-cards">
+        <div class="mvv-card reveal">
+          <div class="mvv-label">Missão</div>
+          <div class="mvv-title">Conectar tecnologia e pessoas</div>
+          <div class="mvv-text">Viabilizar o acesso a softwares 3D de excelência, proporcionando suporte técnico especializado e atendimento personalizado para maximizar o potencial de cada cliente.</div>
+        </div>
+        <div class="mvv-card reveal">
+          <div class="mvv-label">Visão</div>
+          <div class="mvv-title">Liderança em inovação 3D</div>
+          <div class="mvv-text">Ser referência nacional em representação comercial de softwares 3D, antecipando tendências e entregando soluções inovadoras para os desafios do mercado.</div>
+        </div>
+        <div class="mvv-card reveal">
+          <div class="mvv-label">Valores</div>
+          <div class="mvv-title">Ética, transparência e parceria</div>
+          <div class="mvv-text">Relações pautadas pela ética, transparência e confiança, criando parcerias sólidas e de longo prazo com clientes, fornecedores e desenvolvedores de software.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUTOS ===== -->
+<section class="section" id="produtos">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Nossos produtos</span>
+      <h2 class="section-title">Softwares que <em>transformam</em> projetos</h2>
+      <p class="section-desc">Representamos as ferramentas mais avançadas do mercado 3D, com suporte técnico dedicado e treinamento especializado.</p>
+    </div>
+    <div class="produtos-grid">
+
+      <div class="produto-card reveal">
+        <span class="produto-icon">🦏</span>
+        <div class="produto-nome">Rhinoceros 3D</div>
+        <div class="produto-desc">A plataforma líder em modelagem NURBS. Ferramenta essencial para designers, engenheiros e fabricantes exigentes em qualidade e precisão.</div>
+        <span class="produto-tag">Modelagem 3D</span>
+      </div>
+
+      <div class="produto-card reveal">
+        <span class="produto-icon">👟</span>
+        <div class="produto-nome">Plugin Orang</div>
+        <div class="produto-desc">Plugin para Rhinoceros especializado no desenvolvimento de calçados. Otimiza o fluxo de criação de palmilhas, cabedais e solados com ferramentas exclusivas.</div>
+        <span class="produto-tag">Calçados</span>
+      </div>
+
+      <div class="produto-card reveal">
+        <span class="produto-icon">💎</span>
+        <div class="produto-nome">Plugin JFR</div>
+        <div class="produto-desc">Plugin para Rhinoceros direcionado à joalheria. Ferramentas especializadas para modelagem de anéis, pingentes e peças complexas com máxima precisão.</div>
+        <span class="produto-tag">Joalheria</span>
+      </div>
+
+      <div class="produto-card reveal">
+        <span class="produto-icon">🎨</span>
+        <div class="produto-nome">Ant3D</div>
+        <div class="produto-desc">Software de aplicação de texturas 3D com precisão e realismo. Ideal para materiais, estampas e acabamentos superficiais em qualquer tipo de modelo.</div>
+        <span class="produto-tag">Texturização</span>
+      </div>
+
+      <div class="produto-card reveal">
+        <span class="produto-icon">🔧</span>
+        <div class="produto-nome">Limitstate: Fix</div>
+        <div class="produto-desc">Reparador automático de arquivos STL. Corrige erros de malha com eficiência para garantir impressões 3D perfeitas e sem falhas de geometria.</div>
+        <span class="produto-tag">Reparação STL</span>
+      </div>
+
+      <div class="produto-card reveal">
+        <span class="produto-icon">🧬</span>
+        <div class="produto-nome">Resina Wotan</div>
+        <div class="produto-desc">Resinas de alta qualidade para impressão 3D com excelente acabamento superficial. Propriedades mecânicas superiores para resultados profissionais.</div>
+        <span class="produto-tag">Impressão 3D</span>
+      </div>
+
+      <div class="produto-card reveal">
+        <span class="produto-icon">📐</span>
+        <div class="produto-nome">RizomUV</div>
+        <div class="produto-desc">A solução líder em planificação e mapeamento UV. Maximiza a qualidade de texturas com algoritmos avançados de desdobramento de superfície.</div>
+        <span class="produto-tag">Mapeamento UV</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIA ===== -->
+<section class="section" id="galeria">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Softwares em ação</span>
+      <h2 class="section-title">Veja o que nossas <em>ferramentas entregam</em></h2>
+      <p class="section-desc">Resultados reais de projetos realizados com os softwares que representamos.</p>
+    </div>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="carousel-slide">
+          <img src="images/1774879468461_4_gif_jfr_1_.gif" alt="Plugin JFR em ação" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/1774879468910_5_flattening_2.gif" alt="Planificação 3D" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/1774879475070_19_gif7_1_.gif" alt="Modelagem 3D" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/1774879475697_20_gif8_1_.gif" alt="Processo de modelagem" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/1774879476293_21_orang.gif" alt="Plugin Orang em ação" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/aplicacao_de_padroes_com_jfr.jpg" alt="Aplicação de padrões com JFR" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/aplicacao_de_textura_com_ant3d.jpg" alt="Aplicação de textura com Ant3D" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/aplicacao_de_textura_de_joia_com_jfr.jpg" alt="Textura em joia com JFR" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/engenharia_reversa_com_orang.png" alt="Engenharia reversa com Orang" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/joia_feita_com_jfr.jpg" alt="Joia criada com Plugin JFR" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/joia_feita_com_plugin_jfr.jpg" alt="Joia renderizada com JFR" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/midia_5.jpg" alt="Projeto 3D" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/morph_de_compensacao_de_espessura_com_orang.png" alt="Morph de compensação com Orang" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/orang_flow_along_surface.jpg" alt="Flow along surface com Orang" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/planificacao_com_rizomuv.jpg" alt="Planificação com RizomUV" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/regras_de_escala_de_solado_com_orang.png" alt="Escala de solado com Orang" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/reparacao_feita_com_limitstate_fix.jpg" alt="Reparação com Limitstate Fix" loading="lazy">
+          <div class="slide-overlay"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="prevBtn" aria-label="Anterior">&#8249;</button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-btn" id="nextBtn" aria-label="Próximo">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
+  <div class="lb-overlay" id="lbOverlay"></div>
+  <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
+  <button class="lb-prev"  id="lbPrev"  aria-label="Anterior">&#8249;</button>
+  <img src="" alt="" id="lbImg" class="lb-img">
+  <button class="lb-next"  id="lbNext"  aria-label="Próximo">&#8250;</button>
+</div>
+
+<!-- ===== DEPOIMENTOS ===== -->
+<section class="section" id="depoimentos">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Depoimentos</span>
+      <h2 class="section-title">O que nossos <em>clientes dizem</em></h2>
+      <p class="section-desc">Profissionais e empresas de todo o Brasil confiam na UG Comércio para transformar seus fluxos de trabalho.</p>
+    </div>
+    <div class="depo-grid">
+
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-texto">Eder, o plugin é simplesmente sensacional! Já trabalhei com vários plug-ins e posso afirmar com autoridade que não existe nada igual. Pra cima! 🚀</div>
+        <div class="depo-autor">
+          <div class="depo-avatar">AM</div>
+          <div>
+            <div class="depo-nome">Artur Melo</div>
+            <div class="depo-cargo">@arturmelo_designer3d</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-texto">Somos usuários de dois plugins fornecidos pela UG que nos atendem perfeitamente. Mais que isso, somos extremamente felizes em ter como parceiros uma equipe tão solícita e com um pós-venda impecável. Boa parte do sucesso no nosso negócio vem dessa parceria. Recomendamos 1000%.</div>
+        <div class="depo-autor">
+          <div class="depo-avatar">AG</div>
+          <div>
+            <div class="depo-nome">AG Studio 3D</div>
+            <div class="depo-cargo">@agstudio3doficial</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-texto">JFR adiantou meu fluxo de trabalho, sem contar o aumento de qualidade e satisfação final do cliente. Melhor investimento na área 3D que fiz recentemente! 🙏🏼</div>
+        <div class="depo-autor">
+          <div class="depo-avatar">RG</div>
+          <div>
+            <div class="depo-nome">Rafael Silva</div>
+            <div class="depo-cargo">@rafaelgsil</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-texto">Depois que começamos a utilizar as ferramentas representadas pela UG, nosso tempo de projeto diminuiu, sem falar na qualidade do trabalho. Treinamento, suporte e atenção são grande diferencial desta empresa. Recomendo a todos sem dúvida nenhuma!</div>
+        <div class="depo-autor">
+          <div class="depo-avatar">MG</div>
+          <div>
+            <div class="depo-nome">Mould Group</div>
+            <div class="depo-cargo">Indústria de Matrizes</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTATO ===== -->
+<section class="section" id="contato">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Fale conosco</span>
+      <h2 class="section-title">Pronto para <em>transformar</em> seu projeto?</h2>
+      <p class="section-desc">Entre em contato e descubra qual software se encaixa melhor no seu fluxo de trabalho. Atendimento personalizado para cada necessidade.</p>
+    </div>
+
+    <div class="contato-grid">
+
+      <div class="contato-card reveal">
+        <div class="contato-icon">📧</div>
+        <div>
+          <div class="contato-label">E-mail</div>
+          <div class="contato-valor"><a href="mailto:lucas.uggeri@ugrepresentacoes.com">lucas.uggeri@ugrepresentacoes.com</a></div>
+        </div>
+      </div>
+
+      <div class="contato-card reveal">
+        <div class="contato-icon">📱</div>
+        <div>
+          <div class="contato-label">WhatsApp principal</div>
+          <div class="contato-valor"><a href="https://wa.me/5551995133339" target="_blank">(51) 99513-3339</a></div>
+        </div>
+      </div>
+
+      <div class="contato-card reveal">
+        <div class="contato-icon">📞</div>
+        <div>
+          <div class="contato-label">Telefone</div>
+          <div class="contato-valor"><a href="https://wa.me/5551994156497" target="_blank">(51) 99415-6497</a></div>
+        </div>
+      </div>
+
+      <div class="contato-card reveal">
+        <div class="contato-icon">📍</div>
+        <div>
+          <div class="contato-label">Endereço</div>
+          <div class="contato-valor">Rua Cristiano Fuhr, 296<br>Rio Grande do Sul</div>
+        </div>
+      </div>
+
+      <div class="contato-card reveal">
+        <div class="contato-icon">⏰</div>
+        <div>
+          <div class="contato-label">Horário</div>
+          <div class="contato-valor">Segunda a sexta<br>8h às 17h</div>
+        </div>
+      </div>
+
+      <div class="contato-card reveal">
+        <div class="contato-icon">🏢</div>
+        <div>
+          <div class="contato-label">CNPJ</div>
+          <div class="contato-valor">47.990.894/0001-78</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contato-cta reveal">
+      <a href="https://wa.me/5551995133339?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20softwares." target="_blank" class="btn-wpp">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.054 1.49 5.763L.02 23.5l5.891-1.546A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.657-.502-5.178-1.379l-.371-.22-3.496.917.935-3.41-.241-.384A9.936 9.936 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        Iniciar conversa no WhatsApp
+      </a>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/ug_comercio_representacoes" target="_blank" class="social-link" aria-label="Instagram">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/people/Eder-Uggeri/pfbid0KSahHNVaLWGojvXKaUF3GzfKc5yTXniCVmbM3VSby3zVwbpkDpRLLky2cVtTJsv1l/" target="_blank" class="social-link" aria-label="Facebook">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="images/logo.png" alt="UG Comércio">
+    </div>
+    <p class="footer-copy">© 2025 UG Comércio & Representações Ltda · CNPJ 47.990.894/0001-78</p>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/ug_comercio_representacoes" target="_blank" aria-label="Instagram">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/people/Eder-Uggeri/pfbid0KSahHNVaLWGojvXKaUF3GzfKc5yTXniCVmbM3VSby3zVwbpkDpRLLky2cVtTJsv1l/" target="_blank" aria-label="Facebook">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Rodapé MonteSite - Atualização Automática -->
+<div id="montesite-footer-badge"></div>
+<script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
+
+<!-- ===== BOTÃO FLUTUANTE WPP ===== -->
+<a href="https://wa.me/5551995133339?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="wpp-float" aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.09.543 4.054 1.49 5.763L.02 23.5l5.891-1.546A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.657-.502-5.178-1.379l-.371-.22-3.496.917.935-3.41-.241-.384A9.936 9.936 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  /* ── TELA DE CARREGAMENTO ── */
+  (function() {
+    const screen = document.getElementById('loading-screen');
+    const video  = screen ? screen.querySelector('.loading-video') : null;
+    if (!screen) return;
+
+    function fecharLoading() {
+      screen.classList.add('hide');
+      setTimeout(() => screen.remove(), 850);
+    }
+
+    if (video) {
+      video.addEventListener('ended', fecharLoading);
+      // Fallback: fecha após 5 s caso o vídeo não dispare
+      setTimeout(fecharLoading, 5000);
+    } else {
+      setTimeout(fecharLoading, 3000);
+    }
+  })();
+
+  /* ── NAV MOBILE ── */
+  const menuBtn   = document.getElementById('menuBtn');
+  const navMobile = document.getElementById('navMobile');
+
+  menuBtn.addEventListener('click', () => {
+    const open = navMobile.classList.toggle('open');
+    menuBtn.classList.toggle('active', open);
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  function fecharMenu() {
+    navMobile.classList.remove('open');
+    menuBtn.classList.remove('active');
+    menuBtn.setAttribute('aria-expanded', false);
+  }
+
+  /* ── HEADER SCROLL + PROGRESS BAR ── */
+  const header      = document.getElementById('header');
+  const progressBar = document.getElementById('progress-bar');
+
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+    const total = document.body.scrollHeight - window.innerHeight;
+    if (total > 0) progressBar.style.width = (window.scrollY / total * 100) + '%';
+  }, { passive: true });
+
+  /* ── SCROLL REVEAL COM STAGGER ── */
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* Stagger em grids */
+  ['.produtos-grid .produto-card',
+   '.depo-grid .depo-card',
+   '.contato-grid .contato-card',
+   '.mvv-cards .mvv-card'].forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.09) + 's';
+    });
+  });
+
+  /* ── ACTIVE NAV ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-desktop a[href^="#"]');
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('nav-ativo', a.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.4 }).observe && sections.forEach(s => {
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a =>
+            a.classList.toggle('nav-ativo', a.getAttribute('href') === '#' + e.target.id)
+          );
+        }
+      });
+    }, { threshold: 0.4 }).observe(s);
+  });
+
+  /* ── CANVAS PARTÍCULAS NO HERO ── */
+  (function() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    function Particle() {
+      this.reset = () => {
+        this.x  = Math.random() * W;
+        this.y  = H + 5;
+        this.r  = Math.random() * 1.8 + 0.4;
+        this.vy = -(Math.random() * 0.55 + 0.2);
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.a  = Math.random() * 0.45 + 0.08;
+        this.c  = Math.random() > 0.55 ? '59,130,246' : '129,140,248';
+      };
+      this.reset();
+      this.y = Math.random() * H; // distribuir ao iniciar
+    }
+
+    for (let i = 0; i < 70; i++) particles.push(new Particle());
+
+    (function loop() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.a -= 0.0012;
+        if (p.y < -5 || p.a <= 0) p.reset();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.c},${Math.max(0, p.a)})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(loop);
+    })();
+  })();
+
+  /* ── TYPEWRITER NO SLOGAN ── */
+  (function() {
+    const el   = document.getElementById('heroSlogan');
+    if (!el) return;
+    const text = 'Tecnologia que gera valor, suporte que gera confiança.';
+    let i = 0;
+
+    // Cursor element
+    const cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+
+    el.style.transition = 'opacity .4s ease';
+
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.appendChild(cursor);
+
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          el.insertBefore(document.createTextNode(text[i]), cursor);
+          i++;
+        } else {
+          clearInterval(interval);
+          // Remove cursor após 2 s
+          setTimeout(() => cursor.remove(), 2000);
+        }
+      }, 42);
+    }, 1400);
+  })();
+
+  /* ── MOUSE SPOTLIGHT NOS CARDS DE PRODUTO ── */
+  document.querySelectorAll('.produto-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top)  + 'px');
+    });
+  });
+
+  /* ── RIPPLE NOS BOTÕES ── */
+  document.querySelectorAll('.btn-primary, .btn-outline, .btn-wpp').forEach(btn => {
+    btn.style.overflow = 'hidden';
+    btn.style.position = 'relative';
+    btn.addEventListener('click', function(e) {
+      const r    = this.getBoundingClientRect();
+      const size = Math.max(r.width, r.height);
+      const wave = document.createElement('span');
+      wave.className = 'ripple-wave';
+      Object.assign(wave.style, {
+        width:  size + 'px',
+        height: size + 'px',
+        left:   (e.clientX - r.left - size / 2) + 'px',
+        top:    (e.clientY - r.top  - size / 2) + 'px',
+      });
+      this.appendChild(wave);
+      wave.addEventListener('animationend', () => wave.remove());
+    });
+  });
+
+  /* ── CARROSSEL ── */
+  (function() {
+    var track    = document.getElementById('carouselTrack');
+    if (!track) return;
+    var slides   = Array.from(track.querySelectorAll('.carousel-slide'));
+    var dotsWrap = document.getElementById('carouselDots');
+    var prevBtn  = document.getElementById('prevBtn');
+    var nextBtn  = document.getElementById('nextBtn');
+    var total    = slides.length;
+    var current  = 0;
+    var autoTimer;
+    var DELAY    = 4000;
+    var GAP      = 14;
+
+    function getVisible() {
+      var w = window.innerWidth;
+      if (w >= 1024) return 3;
+      if (w >= 640)  return 2;
+      return 1;
+    }
+
+    function getSlideWidth() {
+      var vis = getVisible();
+      return (track.parentElement.offsetWidth - GAP * (vis - 1)) / vis;
+    }
+
+    function updateSlideWidths() {
+      var sw = getSlideWidth();
+      slides.forEach(function(s) { s.style.flex = '0 0 ' + sw + 'px'; });
+    }
+
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      var pages = Math.ceil(total / getVisible());
+      for (var i = 0; i < pages; i++) {
+        var d = document.createElement('button');
+        d.className = 'carousel-dot';
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        d.dataset.idx = i;
+        d.addEventListener('click', function() { goTo(+this.dataset.idx * getVisible()); });
+        dotsWrap.appendChild(d);
+      }
+      updateDots();
+    }
+
+    function updateDots() {
+      var page   = Math.floor(current / getVisible());
+      var dotEls = dotsWrap.querySelectorAll('.carousel-dot');
+      dotEls.forEach(function(d, i) { d.classList.toggle('active', i === page); });
+    }
+
+    function goTo(idx) {
+      var vis = getVisible();
+      var max = Math.max(0, total - vis);
+      current = Math.max(0, Math.min(idx, max));
+      var offset = current * (getSlideWidth() + GAP);
+      track.style.transform = 'translateX(-' + offset + 'px)';
+      updateDots();
+    }
+
+    function next() { var vis = getVisible(); goTo(current + vis < total ? current + 1 : 0); }
+    function prev() { goTo(current <= 0 ? Math.max(0, total - getVisible()) : current - 1); }
+
+    function startAuto() { autoTimer = setInterval(next, DELAY); }
+    function stopAuto()  { clearInterval(autoTimer); }
+
+    prevBtn.addEventListener('click', function() { stopAuto(); prev(); startAuto(); });
+    nextBtn.addEventListener('click', function() { stopAuto(); next(); startAuto(); });
+
+    track.parentElement.addEventListener('mouseenter', stopAuto);
+    track.parentElement.addEventListener('mouseleave', startAuto);
+
+    /* Swipe mobile */
+    var startX = 0;
+    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { stopAuto(); diff > 0 ? next() : prev(); startAuto(); }
+    }, { passive: true });
+
+    /* Resize */
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() { updateSlideWidths(); buildDots(); goTo(0); }, 200);
+    });
+
+    /* Init */
+    updateSlideWidths();
+    buildDots();
+    startAuto();
+
+    /* Abrir lightbox ao clicar no slide */
+    slides.forEach(function(s, i) {
+      s.addEventListener('click', function() { openLB(i); });
+    });
+  })();
+
+  /* ── LIGHTBOX ── */
+  (function() {
+    var lb      = document.getElementById('lightbox');
+    var lbImg   = document.getElementById('lbImg');
+    var lbClose = document.getElementById('lbClose');
+    var lbPrev  = document.getElementById('lbPrev');
+    var lbNext  = document.getElementById('lbNext');
+    if (!lb) return;
+
+    var track   = document.getElementById('carouselTrack');
+    var slides  = track ? Array.from(track.querySelectorAll('.carousel-slide')) : [];
+    var current = 0;
+
+    window.openLB = function(idx) {
+      current = idx;
+      var src = slides[current].querySelector('img').src;
+      lbImg.src = src;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    function closeLB() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    function showPrev() {
+      current = (current - 1 + slides.length) % slides.length;
+      lbImg.src = slides[current].querySelector('img').src;
+    }
+
+    function showNext() {
+      current = (current + 1) % slides.length;
+      lbImg.src = slides[current].querySelector('img').src;
+    }
+
+    lbClose.addEventListener('click', closeLB);
+    lbPrev.addEventListener('click', showPrev);
+    lbNext.addEventListener('click', showNext);
+
+    lb.addEventListener('click', function(e) { if (e.target === lb) closeLB(); });
+
+    document.addEventListener('keydown', function(e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')      closeLB();
+      if (e.key === 'ArrowLeft')   showPrev();
+      if (e.key === 'ArrowRight')  showNext();
+    });
+  })();
+
+</script>
+</body>
+</html>
