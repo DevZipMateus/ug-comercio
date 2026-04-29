@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>UG Comércio</title>
+  <title>UG Comércio e Representações</title>
   <meta name="description" content="Representação de softwares 3D para joalheria, calçados, texturização e impressão 3D. Rhinoceros, plugins especializados, Ant3D, RizomUV e resinas com suporte técnico qualificado.">
 
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="apple-touch-icon" href="images/logo.png">
 
-  <meta property="og:title" content="UG Comércio">
+  <meta property="og:title" content="UG Comércio e Representações">
   <meta property="og:description" content="Representação de softwares 3D para joalheria, calçados, texturização e impressão 3D. Suporte técnico especializado em todo o Brasil.">
   <meta property="og:image" content="images/logo.png">
   <meta property="og:type" content="website">
@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://ugrepresentacoes.com/">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="UG Comércio">
+  <meta name="twitter:title" content="UG Comércio e Representações">
   <meta name="twitter:description" content="Representação de softwares 3D para joalheria, calçados, texturização e impressão 3D.">
   <meta name="twitter:image" content="images/logo.png">
 
@@ -35,7 +35,7 @@
       --border:       rgba(100,130,210,0.12);
       --border2:      rgba(100,130,210,0.22);
       --text:         #DDE5F5;
-      --text-soft:    #7890B8;
+      --text-soft:    #FFFFFF;
       --accent:       #3B82F6;
       --accent2:      #818CF8;
       --accent-glow:  rgba(59,130,246,0.18);
@@ -97,7 +97,7 @@
       font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--accent2);
+      color: var(--white);
       background: rgba(129,140,248,0.1);
       border: 1px solid rgba(129,140,248,0.2);
       padding: 4px 14px;
@@ -415,7 +415,7 @@
     /* ── SOBRE ───────────────────────────────────────── */
     #sobre {
       background:
-        linear-gradient(rgba(7,11,24,0.88), rgba(7,11,24,0.88)),
+        linear-gradient(rgba(7,11,24,0.68), rgba(7,11,24,0.68)),
         url('images/joia_feita_com_plugin_jfr.jpg') center / cover no-repeat;
       background-attachment: fixed, fixed;
     }
@@ -517,7 +517,7 @@
     .area-tag {
       font-size: .78rem;
       font-weight: 500;
-      color: var(--accent2);
+      color: var(--white);
       background: rgba(129,140,248,.1);
       border: 1px solid rgba(129,140,248,.2);
       padding: 5px 12px;
@@ -559,7 +559,7 @@
       font-weight: 700;
       letter-spacing: .15em;
       text-transform: uppercase;
-      color: var(--accent2);
+      color: var(--white);
       margin-bottom: 6px;
     }
 
@@ -579,7 +579,7 @@
     /* ── PRODUTOS ────────────────────────────────────── */
     #produtos {
       background:
-        linear-gradient(rgba(7,11,24,0.86), rgba(7,11,24,0.86)),
+        linear-gradient(rgba(7,11,24,0.66), rgba(7,11,24,0.66)),
         url('images/engenharia_reversa_com_orang.png') center / cover no-repeat;
       background-attachment: fixed, fixed;
     }
@@ -591,8 +591,8 @@
     }
 
     .produto-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      border: 1px solid rgba(100,130,210,0.35);
       border-radius: var(--radius-lg);
       padding: 32px 28px;
       transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
@@ -623,18 +623,25 @@
       margin-bottom: 16px;
       display: block;
     }
+    .produto-icon img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
 
     .produto-nome {
       font-size: 1.05rem;
       font-weight: 700;
-      color: var(--white);
+      color: #111111;
       margin-bottom: 10px;
       line-height: 1.3;
     }
 
     .produto-desc {
       font-size: .88rem;
-      color: var(--text-soft);
+      color: #444444;
       line-height: 1.7;
     }
 
@@ -655,7 +662,7 @@
     /* ── DEPOIMENTOS ─────────────────────────────────── */
     #depoimentos {
       background:
-        linear-gradient(rgba(7,11,24,0.90), rgba(7,11,24,0.90)),
+        linear-gradient(rgba(7,11,24,0.70), rgba(7,11,24,0.70)),
         url('images/orang_flow_along_surface.jpg') center / cover no-repeat;
       background-attachment: fixed, fixed;
     }
@@ -733,7 +740,7 @@
     /* ── CONTATO ─────────────────────────────────────── */
     #contato {
       background:
-        linear-gradient(rgba(7,11,24,0.88), rgba(7,11,24,0.88)),
+        linear-gradient(rgba(7,11,24,0.68), rgba(7,11,24,0.68)),
         url('images/aplicacao_de_textura_com_ant3d.jpg') center / cover no-repeat;
       background-attachment: fixed, fixed;
     }
@@ -775,7 +782,7 @@
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--accent2);
+      color: var(--white);
       margin-bottom: 4px;
     }
 
@@ -1480,9 +1487,7 @@
 
 <!-- ===== TELA DE CARREGAMENTO ===== -->
 <div id="loading-screen">
-  <video class="loading-video" autoplay muted playsinline>
-    <source src="images/Impressora_Aparecendo_Desde_o_Início.mp4" type="video/mp4">
-  </video>
+  <img class="loading-video" src="images/bg-produtos.jpg" alt="" aria-hidden="true">
   <div class="loading-overlay"></div>
   <div class="loading-content">
     <img src="images/logo.png" alt="UG Comércio" class="loading-logo">
@@ -1524,9 +1529,7 @@
 
 <!-- ===== HERO ===== -->
 <section id="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="images/Vídeo_de_Impressora_D_para_Site.mp4" type="video/mp4">
-  </video>
+  <img class="hero-video" src="images/1774879476293_21_orang.gif" alt="Plugin Orang em ação" aria-hidden="true">
   <div class="hero-video-overlay"></div>
   <canvas id="heroCanvas"></canvas>
   <div class="hero-dots"></div>
@@ -1538,7 +1541,7 @@
     <img src="images/logo.png" alt="UG Comércio" class="hero-logo">
   </div>
 
-  <h1>UG Comércio</h1>
+  <h1>UG Comércio e Representações</h1>
 
   <h2>
     Representação especializada em softwares 3D para joalheria,<br>calçados, texturização e impressão 3D
@@ -1565,11 +1568,10 @@
       <!-- Esquerda: história + timeline + áreas -->
       <div class="sobre-left">
         <span class="section-tag reveal">Nossa história</span>
-        <h2 class="reveal">Referência nacional em <em>softwares 3D</em></h2>
+        <h2 class="reveal">Referência em <em>soluções 3D</em></h2>
         <div class="sobre-historia reveal">
-          <p>Fundada em <strong>setembro de 2022</strong>, a UG Comércio e Representações consolidou-se como referência no segmento de representação comercial de softwares para modelagem, renderização e engenharia digital.</p>
-          <p>Desde o início, buscamos parcerias estratégicas com desenvolvedores renomados, ampliando constantemente nosso portfólio para atender às necessidades de profissionais de design, joalheria, calçado e manufatura em todo o Brasil.</p>
-          <p>Nosso crescimento está alicerçado na <strong>excelência do atendimento</strong>, no suporte técnico qualificado e na valorização da experiência do cliente.</p>
+          <p>Fundada em <strong>setembro de 2022</strong>, a UG Comércio e Representações consolidou-se como referência no segmento de representação comercial de softwares para modelagem 3D, renderização e engenharia digital.</p>
+          <p>Desde o início, buscamos ferramentas de baixo custo e alto valor agregado, ampliando constantemente nosso portfólio para atender às necessidades de profissionais de design, joalheria e calçado em todo o Brasil e exterior.</p>
         </div>
 
         <div class="timeline reveal">
@@ -1635,49 +1637,49 @@
     <div class="produtos-grid">
 
       <div class="produto-card reveal">
-        <span class="produto-icon">🦏</span>
+        <span class="produto-icon"><img src="images/logo-rhinoceros.png" alt="Rhinoceros 3D"></span>
         <div class="produto-nome">Rhinoceros 3D</div>
         <div class="produto-desc">A plataforma líder em modelagem NURBS. Ferramenta essencial para designers, engenheiros e fabricantes exigentes em qualidade e precisão.</div>
         <span class="produto-tag">Modelagem 3D</span>
       </div>
 
-      <div class="produto-card reveal">
-        <span class="produto-icon">👟</span>
+      <div class="produto-card reveal" onclick="abrirOrang()" style="cursor:pointer;">
+        <span class="produto-icon"><img src="images/logo-orang.png" alt="Plugin Orang"></span>
         <div class="produto-nome">Plugin Orang</div>
-        <div class="produto-desc">Plugin para Rhinoceros especializado no desenvolvimento de calçados. Otimiza o fluxo de criação de palmilhas, cabedais e solados com ferramentas exclusivas.</div>
+        <div class="produto-desc">Plugin para Rhinoceros especializado no desenvolvimento de solados. Otimiza o fluxo de trabalho de engenheiros e designers com ferramentas avançadas.</div>
         <span class="produto-tag">Calçados</span>
       </div>
 
-      <div class="produto-card reveal">
-        <span class="produto-icon">💎</span>
+      <div class="produto-card reveal produto-card--jfr" onclick="abrirJFR()" style="cursor:pointer;">
+        <span class="produto-icon"><img src="images/logo-jfr.png" alt="Plugin JFR"></span>
         <div class="produto-nome">Plugin JFR</div>
-        <div class="produto-desc">Plugin para Rhinoceros direcionado à joalheria. Ferramentas especializadas para modelagem de anéis, pingentes e peças complexas com máxima precisão.</div>
+        <div class="produto-desc">O JFR torna o design de joias aparentemente complexos especialmente fácil, e até mesmo modeladores iniciantes podem aprender facilmente a usar seus recursos para tornar as finalizações muito mais eficientes.</div>
         <span class="produto-tag">Joalheria</span>
       </div>
 
-      <div class="produto-card reveal">
-        <span class="produto-icon">🎨</span>
+      <div class="produto-card reveal" onclick="abrirAnt3D()" style="cursor:pointer;">
+        <span class="produto-icon"><img src="images/logo-orang.png" alt="Ant3D"></span>
         <div class="produto-nome">Ant3D</div>
-        <div class="produto-desc">Software de aplicação de texturas 3D com precisão e realismo. Ideal para materiais, estampas e acabamentos superficiais em qualquer tipo de modelo.</div>
+        <div class="produto-desc">Software de aplicação de texturas 3D com alta definição de detalhes e tecnologia RizomUV de mapeamento. Possibilitando o uso em qualquer área da indústria.</div>
         <span class="produto-tag">Texturização</span>
       </div>
 
-      <div class="produto-card reveal">
-        <span class="produto-icon">🔧</span>
+      <div class="produto-card reveal" onclick="abrirLimistate()" style="cursor:pointer;">
+        <span class="produto-icon"><img src="images/logo-limistate.png" alt="Limitstate Fix"></span>
         <div class="produto-nome">Limitstate: Fix</div>
         <div class="produto-desc">Reparador automático de arquivos STL. Corrige erros de malha com eficiência para garantir impressões 3D perfeitas e sem falhas de geometria.</div>
         <span class="produto-tag">Reparação STL</span>
       </div>
 
       <div class="produto-card reveal">
-        <span class="produto-icon">🧬</span>
+        <span class="produto-icon"><img src="images/logo-wotan.png" alt="Resina Wotan"></span>
         <div class="produto-nome">Resina Wotan</div>
-        <div class="produto-desc">Resinas de alta qualidade para impressão 3D com excelente acabamento superficial. Propriedades mecânicas superiores para resultados profissionais.</div>
+        <div class="produto-desc">Resinas de alta qualidade para impressão 3D com excelente definição de detalhes e controle dimensional.</div>
         <span class="produto-tag">Impressão 3D</span>
       </div>
 
-      <div class="produto-card reveal">
-        <span class="produto-icon">📐</span>
+      <div class="produto-card reveal" onclick="abrirRizomUV()" style="cursor:pointer;">
+        <span class="produto-icon"><img src="images/logo-rizomuv.png" alt="RizomUV"></span>
         <div class="produto-nome">RizomUV</div>
         <div class="produto-desc">A solução líder em planificação e mapeamento UV. Maximiza a qualidade de texturas com algoritmos avançados de desdobramento de superfície.</div>
         <span class="produto-tag">Mapeamento UV</span>
@@ -1760,10 +1762,6 @@
           <div class="slide-overlay"></div>
         </div>
         <div class="carousel-slide">
-          <img src="images/regras_de_escala_de_solado_com_orang.png" alt="Escala de solado com Orang" loading="lazy">
-          <div class="slide-overlay"></div>
-        </div>
-        <div class="carousel-slide">
           <img src="images/reparacao_feita_com_limitstate_fix.jpg" alt="Reparação com Limitstate Fix" loading="lazy">
           <div class="slide-overlay"></div>
         </div>
@@ -1818,6 +1816,18 @@
           <div>
             <div class="depo-nome">AG Studio 3D</div>
             <div class="depo-cargo">@agstudio3doficial</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depo-card reveal">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-texto">Quero compartilhar uma dica valiosa para quem busca otimizar processos e ganhar escala: estou utilizando o Orang e o impacto tem sido surpreendente. O que mais me chamou a atenção não foi apenas a agilidade que a ferramenta trouxe para o meu dia a dia, mas o leque de possibilidades que ela abre. É aquele tipo de solução que não apenas resolve um problema, mas te ajuda a enxergar novas formas de crescer. O grande diferencial: Pós-Venda com o Eder. Muitas empresas entregam um bom produto, mas poucas entregam um suporte de verdade. A assistência pós-venda deles é totalmente fora da curva: atendimento humanizado e rápido, disposição real em ajudar no sucesso do cliente e acompanhamento que vai muito além do básico. Se você procura uma ferramenta robusta com um time que realmente joga junto com você, recomendo demais!</div>
+        <div class="depo-autor">
+          <div class="depo-avatar">AG</div>
+          <div>
+            <div class="depo-nome">Anderson</div>
+            <div class="depo-cargo">Grupo Dass</div>
           </div>
         </div>
       </div>
@@ -1885,13 +1895,6 @@
         </div>
       </div>
 
-      <div class="contato-card reveal">
-        <div class="contato-icon">📍</div>
-        <div>
-          <div class="contato-label">Endereço</div>
-          <div class="contato-valor">Rua Cristiano Fuhr, 296<br>Rio Grande do Sul</div>
-        </div>
-      </div>
 
       <div class="contato-card reveal">
         <div class="contato-icon">⏰</div>
@@ -1964,7 +1967,6 @@
   /* ── TELA DE CARREGAMENTO ── */
   (function() {
     const screen = document.getElementById('loading-screen');
-    const video  = screen ? screen.querySelector('.loading-video') : null;
     if (!screen) return;
 
     function fecharLoading() {
@@ -1972,13 +1974,7 @@
       setTimeout(() => screen.remove(), 850);
     }
 
-    if (video) {
-      video.addEventListener('ended', fecharLoading);
-      // Fallback: fecha após 5 s caso o vídeo não dispare
-      setTimeout(fecharLoading, 5000);
-    } else {
-      setTimeout(fecharLoading, 3000);
-    }
+    setTimeout(fecharLoading, 3000);
   })();
 
   /* ── NAV MOBILE ── */
@@ -2305,6 +2301,211 @@
     });
   })();
 
+</script>
+
+<!-- ===== MODAL PRODUTOS ===== -->
+<style>
+  #modalProduto {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .mp-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 700px;
+    width: 100%;
+  }
+  .mp-fechar {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .mp-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+  }
+  .mp-slides {
+    display: flex;
+    transition: transform .35s ease;
+  }
+  .mp-slides img {
+    flex: 0 0 100%;
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    background: #000;
+  }
+  .mp-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .mp-nav button {
+    background: rgba(255,255,255,.15);
+    border: none;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .mp-nav button:hover { background: rgba(255,255,255,.3); }
+  .mp-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .mp-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.35);
+    transition: background .2s;
+  }
+  .mp-dot.ativo { background: #fff; }
+  .mp-btn-wpp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #22C55E;
+    color: #fff;
+    font-weight: 700;
+    font-size: .95rem;
+    padding: 12px 28px;
+    border-radius: 99px;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+  }
+  .mp-btn-wpp:hover { background: #16a34a; transform: translateY(-2px); }
+</style>
+
+<div id="modalProduto">
+  <div class="mp-box">
+    <button class="mp-fechar" onclick="fecharModal()">&times;</button>
+    <div class="mp-carousel">
+      <div class="mp-slides" id="mpSlides"></div>
+    </div>
+    <div class="mp-nav" id="mpNav">
+      <button onclick="mpMover(-1)">&#8592;</button>
+      <div class="mp-dots" id="mpDots"></div>
+      <button onclick="mpMover(1)">&#8594;</button>
+    </div>
+    <a href="https://wa.me/5551995133339" target="_blank" class="mp-btn-wpp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Saiba mais
+    </a>
+  </div>
+</div>
+
+<script>
+  const WPP = 'https://wa.me/5551995133339';
+  const PRODUTOS_IMGS = {
+    orang:     [
+      'images/orang-1.jpeg',
+      'images/orang-2.jpeg',
+      'images/orang_flow_along_surface.jpg',
+      'images/engenharia_reversa_com_orang.png',
+      'images/morph_de_compensacao_de_espessura_com_orang.png',
+      'images/regras_de_escala_de_solado_com_orang.png',
+    ],
+    jfr:       [
+      'images/jfr-1.jpeg',
+      'images/jfr-2.jpeg',
+      'images/aplicacao_de_padroes_com_jfr.jpg',
+      'images/aplicacao_de_textura_de_joia_com_jfr.jpg',
+      'images/joia_feita_com_jfr.jpg',
+      'images/joia_feita_com_plugin_jfr.jpg',
+    ],
+    ant3d:     [
+      'images/aplicacao_de_textura_com_ant3d.jpg',
+    ],
+    limistate: [
+      'images/limistate-1.jpeg',
+      'images/reparacao_feita_com_limitstate_fix.jpg',
+    ],
+    rizomuv:   [
+      'images/rizomuv-1.jpeg',
+      'images/planificacao_com_rizomuv.jpg',
+      'images/planificacao_com_rizomuv.png',
+    ],
+  };
+
+  let mpAtual = 0;
+  let mpImgs  = [];
+
+  function abrirModal(produto) {
+    mpImgs  = PRODUTOS_IMGS[produto];
+    mpAtual = 0;
+    const slides = document.getElementById('mpSlides');
+    const dots   = document.getElementById('mpDots');
+    const nav    = document.getElementById('mpNav');
+    slides.innerHTML = mpImgs.map((src, i) =>
+      `<img src="${src}" alt="imagem ${i+1}" draggable="false">`
+    ).join('');
+    dots.innerHTML = mpImgs.map((_, i) =>
+      `<span class="mp-dot${i===0?' ativo':''}"></span>`
+    ).join('');
+    nav.style.display = mpImgs.length > 1 ? 'flex' : 'none';
+    mpRender();
+    const m = document.getElementById('modalProduto');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function mpRender() {
+    document.getElementById('mpSlides').style.transform = `translateX(-${mpAtual * 100}%)`;
+    document.querySelectorAll('.mp-dot').forEach((d, i) => {
+      d.classList.toggle('ativo', i === mpAtual);
+    });
+  }
+
+  function mpMover(dir) {
+    mpAtual = (mpAtual + dir + mpImgs.length) % mpImgs.length;
+    mpRender();
+  }
+
+  function fecharModal() {
+    document.getElementById('modalProduto').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalProduto').addEventListener('click', function(e) {
+    if (e.target === this) fecharModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('modalProduto').style.display === 'flex') {
+      if (e.key === 'ArrowLeft')  mpMover(-1);
+      if (e.key === 'ArrowRight') mpMover(1);
+      if (e.key === 'Escape')     fecharModal();
+    }
+  });
+
+  function abrirOrang()     { abrirModal('orang'); }
+  function abrirJFR()       { abrirModal('jfr'); }
+  function abrirAnt3D()     { abrirModal('ant3d'); }
+  function abrirLimistate() { abrirModal('limistate'); }
+  function abrirRizomUV()   { abrirModal('rizomuv'); }
 </script>
 </body>
 </html>
